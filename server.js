@@ -16,7 +16,7 @@ app.use(passport.initialize());
 
 router.route('/review')
     .post(authJwtController.isAuthenticated, function (req, res) {
-
+        console.log(req.body);
         var usertoken = req.headers.authorization;
         var token = usertoken.split(' ');
         var decoded = jwt.verify(token[1], process.env.SECRET_KEY);
