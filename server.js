@@ -25,12 +25,12 @@ router.route('/review')
             if(err){
                 res.status(400).json({message: "Invalid query"});
             }else{
-                let rev = new Review({
-                    name: decoded.username,
-                    review: req.body.review,
-                    rating: req.body.rating,
-                    movieid: req.body.movieid
-                });
+                var userReview = new Review();
+                userReview.name = decoded.username;
+                userReview.review = req.body.review;
+                userReview.rating = req.body.rating;
+                userReview.movieid = req.body.movieid;
+                };
 
                 console.log(req.body);
 
