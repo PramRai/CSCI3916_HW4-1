@@ -155,7 +155,7 @@ router.route('/reviews')
         let token = usertoken.split(' ');
         let decoded = jwt.verify(token[1], process.env.SECRET_KEY);
 
-        Movie.find({id: mongoose.Types.ObjectId(req.body.Movie_ID), function(err, data) {
+        Movie.find({id: mongoose.Types.ObjectId(req.body.movieid), function(err, data) {
                 if(err){
                     res.status(400).json({message: "Invalid query"});
                 } else {
