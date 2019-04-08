@@ -148,7 +148,7 @@ router.post('/signup', function(req, res) {
     }
 });
 
-router.route('/reviews')
+router.route('/review')
     .post(authJwtController.isAuthenticated, function(req,res) {
 
         let userToken = req.headers.authorization;
