@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var authJwtController = require('./auth_jwt');
 var User = require('./Users');
+var Review = require('./Review');
 var jwt = require('jsonwebtoken');
 var app = express();
 var router = express.Router();
@@ -146,6 +147,38 @@ router.post('/signup', function(req, res) {
         });
     }
 });
+
+router.route('/reviews')
+    .post(authJwtController.isAuthenticated, function(req,res) {
+
+        let userToken = req.headers.authorization;
+        let token = usertoken.split(' ');
+        let decoded = jwt.verify(token[1], process.env.SECRET_KEY);
+
+        Movie.find({id: mongoose.Types.ObjectId(req.body.Movie_ID), function(err, data) {
+                if(err){
+                    res.status(400).json({message: "Invalid query"});
+                } else {
+                    let rev = new Review ({
+                        name: decoded.username,
+                        review: req.body.review,
+                        rating: req.body.rating,
+                        movieid: req.body.movieid
+                    });
+
+                    console.log(req.body);
+
+                    rev.save(function(err){
+                        if(err) {
+                            res.json({message: err});
+                        } else {
+                            res.json({msg: "Review successfully saved"});
+                        }
+                    });
+                }
+            },
+        });
+    });
 
 router.post('/signin', function(req, res) {
     var userNew = new User();
