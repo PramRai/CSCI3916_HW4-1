@@ -2,4 +2,4 @@
 
 ## 🎓 Oleksiy Pobyeda 🎓
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/41561d211f7b2a5ea721)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/0b32fa89106f35e9dea5)
