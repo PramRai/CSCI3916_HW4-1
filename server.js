@@ -30,7 +30,7 @@ router.route('/review')
                 userReview.review = req.body.review;
                 userReview.rating = req.body.rating;
                 userReview.movieid = req.body.movieid;
-                };
+                }
 
                 console.log(req.body);
 
@@ -42,8 +42,7 @@ router.route('/review')
                     }
 
                 });
-            }
-        });
+            })
     });
 
 router.route('/movie')

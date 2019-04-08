@@ -18,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2925">
-              <caret line="195" column="25" selection-start-line="195" selection-start-column="20" selection-end-line="195" selection-end-column="25" />
+            <state relative-caret-position="338">
+              <caret line="44" column="14" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -228,12 +228,12 @@
       <workItem from="1552791665914" duration="4988000" />
       <workItem from="1552801457932" duration="9627000" />
       <workItem from="1553047211228" duration="2503000" />
-      <workItem from="1554678339724" duration="7179000" />
+      <workItem from="1554678339724" duration="7422000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61003000" />
+    <option name="totallyTimeSpent" value="61246000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -248,14 +248,14 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7932584" visible="true" weight="0.16282764" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7932584" visible="true" weight="0.16282764" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.20674157" side_tool="true" weight="0.16282764" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27260274" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27260274" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.26712328" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -407,8 +407,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2925">
-          <caret line="195" column="25" selection-start-line="195" selection-start-column="20" selection-end-line="195" selection-end-column="25" />
+        <state relative-caret-position="338">
+          <caret line="44" column="14" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
         </state>
       </provider>
     </entry>
