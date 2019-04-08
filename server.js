@@ -15,17 +15,17 @@ app.use(passport.initialize());
 
 
 router.route('/review')
-    .post(authJwtController.isAuthenticated, function(req, res){
+    .post(authJwtController.isAuthenticated, function (req, res) {
 
-        var userToken = req.headers.authorization;
-        var token = userToken.split(' ');
+        var usertoken = req.headers.authorization;
+        var token = usertoken.split(' ');
         var decoded = jwt.verify(token[1], process.env.SECRET_KEY);
 
         Movie.find({id: mongoose.Types.ObjectId(req.body.movieid)}, function(err, data){
             if(err){
                 res.status(400).json({message: "Invalid query"});
             }else{
-                var userReview = new Review();
+                let userReview = new Review();
                 userReview.name = decoded.username;
                 userReview.review = req.body.review;
                 userReview.rating = req.body.rating;
@@ -34,7 +34,7 @@ router.route('/review')
 
                 console.log(req.body);
 
-                rev.save(function(err){
+                userReview.save(function(err){
                     if(err) {
                         res.json({message: err});
                     }else{
