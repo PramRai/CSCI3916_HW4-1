@@ -15,11 +15,11 @@ app.use(passport.initialize());
 
 
 router.route('/review')
-    .post(authJwtController.isAuthenticated, function(req,res){
+    .post(authJwtController.isAuthenticated, function(req, res){
 
-        const userToken = req.headers.authorization;
-        const token = userToken.split(' ');
-        const decoded = jwt.verify(token[1], process.env.SECRET_KEY);
+        var userToken = req.headers.authorization;
+        var token = userToken.split(' ');
+        var decoded = jwt.verify(token[1], process.env.SECRET_KEY);
 
         Movie.find({id: mongoose.Types.ObjectId(req.body.movieid)}, function(err, data){
             if(err){
