@@ -165,7 +165,7 @@ router.route('/movie/:movieid')
                         if (err) {
                             res.json({message: "Error .", error: err});
                         } else {
-                            res.json({message:"Here is what I found:", brandNewVar: brandNewVar});
+                            res.json(brandNewVar);
                         }
                     });
 
