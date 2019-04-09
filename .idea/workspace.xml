@@ -18,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="185" column="47" selection-start-line="185" selection-start-column="47" selection-end-line="185" selection-end-column="47" />
+            <state relative-caret-position="243">
+              <caret line="181" column="72" lean-forward="true" selection-start-line="179" selection-start-column="6" selection-end-line="181" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -73,8 +73,8 @@
       <find>DB</find>
       <find>,</find>
       <find>req</find>
-      <find>token</find>
       <find>movieid</find>
+      <find>token</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -198,7 +198,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66978000" />
+    <option name="totallyTimeSpent" value="67357000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -372,8 +372,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="185" column="47" selection-start-line="185" selection-start-column="47" selection-end-line="185" selection-end-column="47" />
+        <state relative-caret-position="243">
+          <caret line="181" column="72" lean-forward="true" selection-start-line="179" selection-start-column="6" selection-end-line="181" selection-end-column="72" />
         </state>
       </provider>
     </entry>
