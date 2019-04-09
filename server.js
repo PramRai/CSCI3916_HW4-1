@@ -175,7 +175,7 @@ router.route('/movie/:id')
 
 router.route('/review')
     .post(authJwtController.isAuthenticated, function(req, res){
-        var conditions = {_id: req.params.id};
+        res.json({message: "test"});
     });
 
 //All other routs and methods
