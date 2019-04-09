@@ -8,9 +8,7 @@ var jwt = require('jsonwebtoken');
 var app = express();
 var router = express.Router();
 var Movie = require('./Movie');
-
 module.exports = app; // for testing
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
@@ -18,15 +16,15 @@ app.use(passport.initialize());
 
 router.route('/review')
     .post(authJwtController.isAuthenticated, function (req, res) {
-
+        console.log(req.body);
         var usertoken = req.headers.authorization;
         var token = usertoken.split(' ');
         var decoded = jwt.verify(token[1], process.env.SECRET_KEY);
 
-        Movie.find({id: req.body.movieid}, function(err, data){
+        Movie.find({id: mongoose.Types.ObjectId(req.body.movieid)}, function(err, data){
             if(err){
                 res.status(400).json({message: "Invalid query"});
-            }else if (data != null){
+            }else{
                 let userReview = new Review();
                 userReview.name = decoded.username;
                 userReview.review = req.body.review;
