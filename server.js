@@ -146,8 +146,10 @@ router.route('/movie/:movieid')
     .get(authJwtController.isAuthenticated, function (req, res) {
         var id = req.params.movieid;
         Movie.findById(id, function (err, movie) {
-            if (err) res.send(err);
-            else{
+            if (err) {
+                res.send(err);
+            }
+            else {
                 if (req.body.reviews == "true"){
                     Movie.aggregate([
 
@@ -159,12 +161,11 @@ router.route('/movie/:movieid')
                                 foreignField: 'movieid',
                                 as: 'review'
                             }
-                        }
-
-                    ], function (err, brandNewVar) {
+                        }],function (err, brandNewVar) {
                         if (err) {
                             res.json({message: "Error .", error: err});
                         } else {
+                            console.log(brandNewVar);
                             res.json(brandNewVar);
                         }
                     });
