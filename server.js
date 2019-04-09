@@ -148,10 +148,10 @@ router.route('/movie/:movieid')
         Movie.findById(id, function (err, movie) {
             if (err) res.send(err);
             else{
-                if (req.query.reviews == "true"){
+                if (req.body.reviews == "true"){
                     Movie.aggregate([
 
-                        {$match: {'_id': req.body.id}},
+                        {$match: {'_id': id}},
 
                         {$lookup: {
                                 from: 'reviews',
