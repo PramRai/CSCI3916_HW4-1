@@ -181,28 +181,28 @@ router.route('/review')
         const token = usertoken.split(' ');
         const decoded = jwt.verify(token[1], process.env.SECRET_KEY);
 
-        Movie.findById(id, function (err, something){
-            if (err) {
-                res.json({message: "Error 🚨"});
-            }
-            if (something) {
-                var review = new Review();
-                review.name = decoded.username;
-                review.review = req.body.review;
-                review.rating = req.body.rating;
-                review.movieid = req.body.movieid;
-
-                review.save(function (err) {
-                    if(err){
-                        res.json({message: "Review has not saved 🚨"});
-                    }
-                    else{
-                        res.json({message: "Review 🚀 saved to Mongo DB"});
-                    }
-                })
-            } else {
-                res.json({failure: "Movie not found."});
-            }
+        // Movie.findById(id, function (err, something){
+        //     if (err) {
+        //         res.json({message: "Error 🚨"});
+        //     }
+        //     if (something) {
+        //         var review = new Review();
+        //         review.name = decoded.username;
+        //         review.review = req.body.review;
+        //         review.rating = req.body.rating;
+        //         review.movieid = req.body.movieid;
+        //
+        //         review.save(function (err) {
+        //             if(err){
+        //                 res.json({message: "Review has not saved 🚨"});
+        //             }
+        //             else{
+        //                 res.json({message: "Review 🚀 saved to Mongo DB"});
+        //             }
+        //         })
+        //     } else {
+        //         res.json({failure: "Movie not found."});
+        //     }
         })
 
     });
