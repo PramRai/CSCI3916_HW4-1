@@ -187,12 +187,12 @@ router.route('/review')
                 something.send(err);
 
             } else if (something != null) {
-                console.log(something.body);
+                console.log(req.body);
                 var review = new Review();
                 review.name = decoded.username;
-                review.review = something.body.review;
-                review.rating = something.body.rating;
-                review.movieid = something.body.movieid;
+                review.review = req.body.review;
+                review.rating = req.body.rating;
+                review.movieid = req.body.movieid;
 
                 review.save(function (err) {
                     if(err){
