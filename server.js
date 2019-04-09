@@ -146,7 +146,7 @@ router.route('/movie/:movieid')
         var id = req.params.movieid;
         Movie.findById(id, function (err, movie) {
             if (err) res.send(err);
-            if (req.query.reviews === "true"){
+            if (req.query.reviews == "true"){
                 Movie.aggregate([
 
                     {$match: {'_id': req.query.movieid}},
