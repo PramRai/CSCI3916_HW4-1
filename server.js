@@ -157,7 +157,7 @@ router.route('/movie/:movieid')
                                 from: 'reviews',
                                 localField: '_id',
                                 foreignField: 'movieid',
-                                as: 'reviews'
+                                as: 'review'
                             }
                         }
 
