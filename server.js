@@ -14,40 +14,76 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 
 
-router.route('/review')
-    .post(authJwtController.isAuthenticated, function (req, res) {
-        console.log(req.body);
-        var usertoken = req.headers.authorization;
-        var token = usertoken.split(' ');
-        var decoded = jwt.verify(token[1], process.env.SECRET_KEY);
 
-        Movie.find({id: mongoose.Types.ObjectId(req.body.movieid)}, function(err, data){
-            if(err){
-                res.status(400).json({message: "Invalid query"});
-            }else{
-                let userReview = new Review();
-                userReview.name = decoded.username;
-                userReview.review = req.body.review;
-                userReview.rating = req.body.rating;
-                userReview.movieid = req.body.movieid;
-                }
 
-                console.log(req.body);
-
-                userReview.save(function(err){
-                    if(err) {
-                        res.json({message: err});
-                    }else{
-                        res.json({msg: "Review successfully saved"});
-                    }
-
-                });
-            })
+router.route('/users/:userId')
+    .get(authJwtController.isAuthenticated, function (req, res) {
+        var id = req.params.userId;
+        User.findById(id, function(err, user) {
+            if (err) res.send(err);
+            // return that user
+            res.json(user);
+        });
     });
 
-router.route('/movie')
+router.route('/users')
+    .get(authJwtController.isAuthenticated, function (req, res) {
+        User.find(function (err, users) {
+            if (err) res.send(err);
+            // return the users
+            res.json(users);
+        });
+    });
 
-    //save movie
+//{name : 'oleksiy', username : 'oleksiy', password : 'password'}
+router.post('/signup', function(req, res) {
+    if (!req.body.username || !req.body.password) {
+        res.json({success: false, message: 'Please pass username and password.'});
+    }
+    else {
+        var user = new User();
+        user.name = req.body.name;
+        user.username = req.body.username;
+        user.password = req.body.password;
+        // save the user
+        user.save(function(err) {
+            if (err) {
+                // duplicate entry
+                if (err.code == 11000)
+                    return res.json({ success: false, message: 'A user with that username already exists. '});
+                else
+                    return res.send(err);
+            }
+            res.json({ success: true, message: 'User created!' });
+        });
+    }
+});
+
+router.post('/signin', function(req, res) {
+    var userNew = new User();
+    userNew.name = req.body.name;
+    userNew.username = req.body.username;
+    userNew.password = req.body.password;
+
+    User.findOne({ username: userNew.username }).select('name username password').exec(function(err, user) {
+        if (err) res.send(err);
+
+        user.comparePassword(userNew.password, function(isMatch){
+            if (isMatch) {
+                var userToken = {id: user._id, username: user.username};
+                var token = jwt.sign(userToken, process.env.SECRET_KEY);
+                res.json({success: true, token: 'JWT ' + token});
+            }
+            else {
+                res.status(401).send({success: false, message: 'Authentication failed.'});
+            }
+        });
+    });
+});
+
+
+router.route('/movie')
+//save movie
     .post(authJwtController.isAuthenticated, function (req, res) {
         console.log(req.body);
         var movie = new Movie();
@@ -137,69 +173,9 @@ router.route('/movie/:id')
         })
     });
 
-router.route('/users/:userId')
-    .get(authJwtController.isAuthenticated, function (req, res) {
-        var id = req.params.userId;
-        User.findById(id, function(err, user) {
-            if (err) res.send(err);
-            // return that user
-            res.json(user);
-        });
-    });
+router.route('/review')
+    .post(authJwtController.isAuthenticated, function (req, res){
 
-router.route('/users')
-    .get(authJwtController.isAuthenticated, function (req, res) {
-        User.find(function (err, users) {
-            if (err) res.send(err);
-            // return the users
-            res.json(users);
-        });
-    });
-
-//{name : 'oleksiy', username : 'oleksiy', password : 'password'}
-router.post('/signup', function(req, res) {
-    if (!req.body.username || !req.body.password) {
-        res.json({success: false, message: 'Please pass username and password.'});
-    }
-    else {
-        var user = new User();
-        user.name = req.body.name;
-        user.username = req.body.username;
-        user.password = req.body.password;
-        // save the user
-        user.save(function(err) {
-            if (err) {
-                // duplicate entry
-                if (err.code == 11000)
-                    return res.json({ success: false, message: 'A user with that username already exists. '});
-                else
-                    return res.send(err);
-            }
-            res.json({ success: true, message: 'User created!' });
-        });
-    }
-});
-
-router.post('/signin', function(req, res) {
-    var userNew = new User();
-    userNew.name = req.body.name;
-    userNew.username = req.body.username;
-    userNew.password = req.body.password;
-
-    User.findOne({ username: userNew.username }).select('name username password').exec(function(err, user) {
-        if (err) res.send(err);
-
-        user.comparePassword(userNew.password, function(isMatch){
-            if (isMatch) {
-                var userToken = {id: user._id, username: user.username};
-                var token = jwt.sign(userToken, process.env.SECRET_KEY);
-                res.json({success: true, token: 'JWT ' + token});
-            }
-            else {
-                res.status(401).send({success: false, message: 'Authentication failed.'});
-            }
-        });
-    });
 });
 
 //All other routs and methods
