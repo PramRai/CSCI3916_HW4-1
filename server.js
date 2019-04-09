@@ -5,6 +5,7 @@ var authJwtController = require('./auth_jwt');
 var User = require('./Users');
 var Review = require('./Review');
 var jwt = require('jsonwebtoken');
+var mongoose = require('mongoose');
 var app = express();
 var router = express.Router();
 var Movie = require('./Movie');
