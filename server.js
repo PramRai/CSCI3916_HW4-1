@@ -146,7 +146,30 @@ router.route('/movie/:movieid')
         var id = req.params.movieid;
         Movie.findById(id, function (err, movie) {
             if (err) res.send(err);
-            res.json(movie);
+            if (req.query.reviews == "True"){
+                Movie.aggregate([
+
+                    {$match: {'_id': id}},
+
+                    {$lookup: {
+                            from: 'Reviews',
+                            localField: '_id',
+                            foreignField: 'movieid',
+                            as: 'Reviews'
+                        }}
+
+                    ], function (err, brandNewVar) {
+                    if (err) {
+                        res.json({message: "Error accured.", error: err});
+                    } else {
+                        res.json(brandNewVar);
+                    }
+                })
+            } else {
+                res.json(movie);
+            }
+
+
         })
     });
 
