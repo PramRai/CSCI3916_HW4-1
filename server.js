@@ -175,36 +175,7 @@ router.route('/movie/:id')
 
 router.route('/Review')
     .post(authJwtController.isAuthenticated, function(req,res){
-
-        // const usertoken = req.headers.authorization;
-        // const token = usertoken.split(' ');
-        // const decoded = jwt.verify(token[1], process.env.SECRET_KEY);
-
-        // Movie.find({_id: req.body.movieid}, function(err, data){
-        //     if(err){
-        //         res.status(400).json({message: "Invalid query"});
-        //     }else if (data != null){
-        //         // let rev = new Review({
-        //         //     Name: decoded.username,
-        //         //     Review: req.body.Review,
-        //         //     Rating: req.body.Rating,
-        //         //     Movie_ID: req.body.Movie_ID
-        //         // });
-        //         //
-        //         // console.log(req.body);
-        //         //
-        //         // rev.save(function(err){
-        //         //     if(err) {
-        //         //         res.json({message: err});
-        //         //     }else{
-        //         //         res.json({msg: "Review successfully saved"});
-        //         //     }
-        //         //
-        //         // });
-        //     }else{
-        //         res.json({failure: "Movie does not exist"});
-        //     }
-        // });
+        
     });
 
 //All other routs and methods
