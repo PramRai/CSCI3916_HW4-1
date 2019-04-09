@@ -177,9 +177,9 @@ router.route('/review')
     .post(authJwtController.isAuthenticated, function(req, res){
         //res.json({message: "test"});
 
-        // const usertoken = req.headers.authorization;
-        // const token = usertoken.split(' ');
-        // const decoded = jwt.verify(token[1], process.env.SECRET_KEY);
+        const usertoken = req.headers.authorization;
+        const token = usertoken.split(' ');
+        const decoded = jwt.verify(token[1], process.env.SECRET_KEY);
 
         Movie.findById(id, function (err, something){
             if (err) {
