@@ -175,13 +175,13 @@ router.route('/movie/:id')
 
 router.route('/review')
     .post(authJwtController.isAuthenticated, function(req, res){
-        res.json({message: "test"});
+        //res.json({message: "test"});
 
         const usertoken = req.headers.authorization;
         const token = usertoken.split(' ');
         const decoded = jwt.verify(token[1], process.env.SECRET_KEY);
 
-        Movie.findbyid(id, function (err, something){
+        Movie.findById(id, function (err, something){
             if (err) {
                 something.send(err);
             } else if (movie != null) {
