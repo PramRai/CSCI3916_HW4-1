@@ -184,7 +184,8 @@ router.route('/review')
         Movie.findById(id, function (err, something){
             if (err) {
                 something.send(err);
-            } else if (movie != null) {
+                res.json({message: "Error 🚨"});
+            } else if (something != null) {
                 console.log(something.body);
                 var review = new Review();
                 review.name = decoded.username;
