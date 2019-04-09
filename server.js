@@ -174,38 +174,38 @@ router.route('/movie/:movieid')
         })
     });
 
-router.route('/movie')
-    .get(authJwtController.isAuthenticated, function (req, res) {
-        var title = req.body.title;
-        Movie.find(title, function (err, movie) {
-            if (err) res.send(err);
-            if (req.query.reviews == "true"){
-                Movie.aggregate([
-
-                    {$match: {'Title': req.body.title}},
-
-                    {$lookup: {
-                            from: 'reviews',
-                            localField: '_id',
-                            foreignField: 'movieid',
-                            as: 'reviews'
-                        }
-                    }
-
-                ], function (err, brandNewVar) {
-                    if (err) {
-                        res.json({message: "Error .", error: err});
-                    } else {
-                        res.json({message:"Here is what I found:", brandNewVar: brandNewVar});
-                    }
-                })
-            } else {
-                res.json(movie);
-            }
-
-
-        })
-    });
+// router.route('/movie')
+    // .get(authJwtController.isAuthenticated, function (req, res) {
+    //     var title = req.body.title;
+    //     Movie.find(title, function (err, movie) {
+    //         if (err) res.send(err);
+    //         if (req.query.reviews == "true"){
+    //             Movie.aggregate([
+    //
+    //                 {$match: {'Title': req.body.title}},
+    //
+    //                 {$lookup: {
+    //                         from: 'reviews',
+    //                         localField: '_id',
+    //                         foreignField: 'movieid',
+    //                         as: 'reviews'
+    //                     }
+    //                 }
+    //
+    //             ], function (err, brandNewVar) {
+    //                 if (err) {
+    //                     res.json({message: "Error .", error: err});
+    //                 } else {
+    //                     res.json({message:"Here is what I found:", brandNewVar: brandNewVar});
+    //                 }
+    //             })
+    //         } else {
+    //             res.json(movie);
+    //         }
+    //
+    //
+    //     })
+    // });
 
 //update movie
 router.route('/movie/:id')
