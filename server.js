@@ -152,10 +152,10 @@ router.route('/movie/:movieid')
                     {$match: {'_id': id}},
 
                     {$lookup: {
-                            from: 'Reviews',
+                            from: 'reviews',
                             localField: '_id',
                             foreignField: 'movieid',
-                            as: 'Reviews'
+                            as: 'reviews'
                         }}
 
                     ], function (err, brandNewVar) {
