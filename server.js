@@ -175,7 +175,7 @@ router.route('/movie/:id')
 
 router.route('/review')
     .post(authJwtController.isAuthenticated, function(req, res){
-        res.json({message: "test"});
+        //res.json({message: "test"});
 
         const usertoken = req.headers.authorization;
         const token = usertoken.split(' ');
