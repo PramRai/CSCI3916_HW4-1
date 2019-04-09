@@ -176,6 +176,35 @@ router.route('/movie/:id')
 router.route('/review')
     .post(authJwtController.isAuthenticated, function(req, res){
         res.json({message: "test"});
+
+        const usertoken = req.headers.authorization;
+        const token = usertoken.split(' ');
+        const decoded = jwt.verify(token[1], process.env.SECRET_KEY);
+
+        Movie.findbyid(id, function (err, something){
+            if (err) {
+                something.send(err);
+            } else if (movie != null) {
+                console.log(something.body);
+                var review = new Review();
+                review.name = decoded.username;
+                review.review = something.body.review;
+                review.rating = something.body.rating;
+                review.movieid = something.body.movieid;
+
+                review.save(function (err) {
+                    if(err){
+                        res.json({message: "Review has not saved 🚨"});
+                    }
+                    else{
+                        res.json({message: "Review 🚀 saved to Mongo DB"});
+                    }
+                })
+            } else {
+                res.json({failure: "Movie not found."});
+            }
+        })
+
     });
 
 //All other routs and methods
