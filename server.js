@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var authJwtController = require('./auth_jwt');
 var User = require('./Users');
-var Review = require('./review');
+var Review = require('./Review');
 var jwt = require('jsonwebtoken');
 var app = express();
 var router = express.Router();
@@ -173,7 +173,7 @@ router.route('/movie/:id')
         })
     });
 
-router.route('/review')
+router.route('/Review')
     .post(authJwtController.isAuthenticated, function(req,res){
 
         // const usertoken = req.headers.authorization;
