@@ -177,34 +177,33 @@ router.route('/review')
     .post(authJwtController.isAuthenticated, function(req, res){
         res.json({message: "test"});
 
-        // const usertoken = req.headers.authorization;
-        // const token = usertoken.split(' ');
-        // const decoded = jwt.verify(token[1], process.env.SECRET_KEY);
+        const usertoken = req.headers.authorization;
+        const token = usertoken.split(' ');
+        const decoded = jwt.verify(token[1], process.env.SECRET_KEY);
+        var id = req.params.userId;
+        Movie.findById(id, function (err, something){
+            if (err) {
+                res.json({message: "Error 🚨"});
+            }
+            if (something) {
+                var review = new Review();
+                review.name = decoded.username;
+                review.review = req.body.review;
+                review.rating = req.body.rating;
+                review.movieid = req.body.movieid;
 
-        // Movie.findById(id, function (err, something){
-        //     if (err) {
-        //         res.json({message: "Error 🚨"});
-        //     }
-        //     if (something) {
-        //         var review = new Review();
-        //         review.name = decoded.username;
-        //         review.review = req.body.review;
-        //         review.rating = req.body.rating;
-        //         review.movieid = req.body.movieid;
-        //
-        //         review.save(function (err) {
-        //             if(err){
-        //                 res.json({message: "Review has not saved 🚨"});
-        //             }
-        //             else{
-        //                 res.json({message: "Review 🚀 saved to Mongo DB"});
-        //             }
-        //         })
-        //     } else {
-        //         res.json({failure: "Movie not found."});
-        //     }
-        // })
-
+                review.save(function (err) {
+                    if(err){
+                        res.json({message: "Review has not saved 🚨"});
+                    }
+                    else{
+                        res.json({message: "Review 🚀 saved to Mongo DB"});
+                    }
+                })
+            } else {
+                res.json({failure: "Movie not found."});
+            }
+        })
     });
 
 //All other routs and methods
