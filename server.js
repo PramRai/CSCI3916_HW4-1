@@ -180,7 +180,7 @@ router.route('/review')
         const usertoken = req.headers.authorization;
         const token = usertoken.split(' ');
         const decoded = jwt.verify(token[1], process.env.SECRET_KEY);
-        var id = req.body.userId;
+        var id = req.body.movieid;
         Movie.findById(id, function (err, something){
             if (err) {
                 res.json({message: "Error 🚨"});
