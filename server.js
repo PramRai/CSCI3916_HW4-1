@@ -145,12 +145,13 @@ router.route('/movie')
 router.route('/movie/:movieid')
     .get(authJwtController.isAuthenticated, function (req, res) {
         var id = req.params.movieid;
+        var needReview = req.query.reviews;
         Movie.findById(id, function (err, movie) {
             if (err) {
                 res.json({message: "Error 🚨 Movie not found.\n"});
             }
             else {
-                if (req.params.reviews === "true"){
+                if (needReview == "true"){
                         Movie.aggregate([
 
                         {$match: {'_id': id}},
