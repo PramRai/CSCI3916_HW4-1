@@ -244,6 +244,7 @@ router.route('/review')
         var id = req.body.movieid;
         Movie.findById(id, function (err, something){
             if (err) {
+                res.json("Movie not exist!");
                 res.json({message: "Error 🚨"});
             }
             if (something) {
