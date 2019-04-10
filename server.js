@@ -152,8 +152,6 @@ router.route('/movie/:movieid')
             }
             else {
                 if (needReview == "true"){
-
-                        res.json(movie);
                         Movie.aggregate([
 
                         {$match: {'_id': req.params.movieid}},
@@ -162,7 +160,7 @@ router.route('/movie/:movieid')
                                 from: 'reviews',
                                 localField: '_id',
                                 foreignField: 'movieid',
-                                as: 'review'
+                                as: 'Reviews'
                             }
                         }],function (err, brandNewVar) {
                             if (err) {
