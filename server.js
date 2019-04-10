@@ -189,7 +189,6 @@ router.route('/movie/:id')
 
 router.route('/review')
     .post(authJwtController.isAuthenticated, function(req, res){
-        //res.json({message: "test"});
 
         var usertoken = req.headers.authorization;
         var token = usertoken.split(' ');
@@ -199,7 +198,7 @@ router.route('/review')
             if (err) {
                 res.json({message: "Error Movie not exist.\n"});
             }
-            if (something) {
+            else if (something) {
                 var review = new Review();
                 review.name = decoded.username;
                 review.review = req.body.review;
