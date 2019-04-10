@@ -147,12 +147,11 @@ router.route('/movie/:movieid')
         var id = req.params.movieid;
         Movie.findById(id, function (err, movie) {
             if (err) {
-                res.send(err);
-            } else if (!movie){
                 res.json("Movie not exist!");
+                res.send(err);
             }
             else {
-                if (req.body.reviews == "true"){
+                if (req.param.reviews == "true"){
                     Movie.aggregate([
 
                         {$match: {'_id': id}},
