@@ -151,7 +151,11 @@ router.route('/movie/:movieid')
                 if (needReview == "true"){
 
                     Review.find(id, function (err, rev){
-                        res.json({requestedMovie: movie, movieReviews: rev});
+                        if (err) {
+                            res.json({message: "Error .", error: err});
+                        } else {
+                            res.json({requestedMovie: movie, movieReviews: rev});
+                        }
                     });
 
 
