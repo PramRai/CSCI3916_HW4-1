@@ -153,7 +153,7 @@ router.route('/movie/:movieid')
                         Movie.aggregate([
 
                         {$match: {
-                            "_id": ObjectID(req.params.movieid)
+                            "_id": req.params.movieid
                             }
                         },
 
@@ -171,17 +171,6 @@ router.route('/movie/:movieid')
                                 res.json({message: "Here you are.", movie_and_review: brandNewVar});
                             }
                     });
-
-                    // Movie.aggregate()
-                    //     .match(req.params.movieid)
-                    //     .lookup({from: 'reviews', localField: '_id', foreignField: 'movieid', as : 'Reviews'})
-                    //     .exec(function(err, movieAndReview) {
-                    //         if (err) {
-                    //             return res.json({message: "Error .", error: err});
-                    //         } else {
-                    //             return res.json({message: "Here you are.", movie_and_review: movieAndReview});
-                    //         }
-                    //     })
                 } else {
                     res.json(movie);
                 }
