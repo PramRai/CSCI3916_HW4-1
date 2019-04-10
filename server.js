@@ -190,10 +190,10 @@ router.route('/movie/:id')
 router.route('/review')
     .post(authJwtController.isAuthenticated, function(req, res){
 
-        var usertoken = req.headers.authorization;
-        var token = usertoken.split(' ');
-        var decoded = jwt.verify(token[1], process.env.SECRET_KEY);
-        var id = req.body.movieid;
+        let usertoken = req.headers.authorization;
+        let token = usertoken.split(' ');
+        let decoded = jwt.verify(token[1], process.env.SECRET_KEY);
+        let id = req.body.movieid;
         Movie.findById(id, function (err, something){
             if (err) {
                 res.json({message: "Error Movie not exist.\n"});
