@@ -146,6 +146,7 @@ router.route('/movie/:movieid')
     .get(authJwtController.isAuthenticated, function (req, res) {
         var id = req.params.movieid;
         var needReview = req.query.reviews;
+        res.json(needReview);
         Movie.findById(id, function (err, movie) {
             if (err) {
                 res.json({message: "Error 🚨 Movie not found.\n"});
