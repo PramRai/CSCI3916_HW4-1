@@ -207,7 +207,7 @@ router.route('/review')
 
                 review.save(function (err) {
                     if(err){
-                        res.json({message: "Review has not saved "});
+                        res.json({message: "Review has not saved because you missing required fields!"});
                     }
                     else{
                         res.json({message: "Review 🚀 saved to Mongo DB"});
