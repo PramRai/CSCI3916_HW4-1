@@ -14,9 +14,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 
-
-
-
 router.route('/users/:userId')
     .get(authJwtController.isAuthenticated, function (req, res) {
         var id = req.params.userId;
@@ -154,13 +151,13 @@ router.route('/movie/:movieid')
                 if (needReview == "true"){
                         Movie.aggregate([
 
-                        {$match: {'_id': req.params.movieid}},
+                        {$match: {"_id": req.params.movieid}},
 
                         {$lookup: {
-                                from: 'reviews',
-                                localField: '_id',
-                                foreignField: 'movieid',
-                                as: 'Reviews'
+                                from: "reviews",
+                                localField: "_id",
+                                foreignField: "movieid",
+                                as: "Reviews"
                             }
                         }],function (err, brandNewVar) {
                             if (err) {
