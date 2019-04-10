@@ -152,14 +152,12 @@ router.route('/movie/:movieid')
 
                         Movie.aggregate([
 
-                        {$match: {
-                            "_id.Movie": req.params.movieid
-                            }
+                        {$match: { _id: req.params.movieid }
                         },
 
                         {$lookup: {
                                 from: 'reviews',
-                                localField: '_id.Movie',
+                                localField: '_id',
                                 foreignField: 'movieid',
                                 as: 'reviews'
                             }
