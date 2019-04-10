@@ -146,13 +146,14 @@ router.route('/movie/:movieid')
     .get(authJwtController.isAuthenticated, function (req, res) {
         var id = req.params.movieid;
         var needReview = req.query.reviews;
-        res.json(needReview);
         Movie.findById(id, function (err, movie) {
             if (err) {
                 res.json({message: "Error 🚨 Movie not found.\n"});
             }
             else {
                 if (needReview == "true"){
+
+                        res.json(movie);
                         Movie.aggregate([
 
                         {$match: {'_id': req.params.movieid}},
@@ -164,12 +165,11 @@ router.route('/movie/:movieid')
                                 as: 'review'
                             }
                         }],function (err, brandNewVar) {
-                        if (err) {
-                            res.json({message: "Error .", error: err});
-                        } else {
-                            console.log(brandNewVar);
-                            res.json(brandNewVar);
-                        }
+                            if (err) {
+                                res.json({message: "Error .", error: err});
+                            } else {
+                                res.json(brandNewVar);
+                            }
                     });
 
                 } else {
@@ -178,39 +178,6 @@ router.route('/movie/:movieid')
             }
         })
     });
-
-// router.route('/movie')
-    // .get(authJwtController.isAuthenticated, function (req, res) {
-    //     var title = req.body.title;
-    //     Movie.find(title, function (err, movie) {
-    //         if (err) res.send(err);
-    //         if (req.query.reviews == "true"){
-    //             Movie.aggregate([
-    //
-    //                 {$match: {'Title': req.body.title}},
-    //
-    //                 {$lookup: {
-    //                         from: 'reviews',
-    //                         localField: '_id',
-    //                         foreignField: 'movieid',
-    //                         as: 'reviews'
-    //                     }
-    //                 }
-    //
-    //             ], function (err, brandNewVar) {
-    //                 if (err) {
-    //                     res.json({message: "Error .", error: err});
-    //                 } else {
-    //                     res.json({message:"Here is what I found:", brandNewVar: brandNewVar});
-    //                 }
-    //             })
-    //         } else {
-    //             res.json(movie);
-    //         }
-    //
-    //
-    //     })
-    // });
 
 //update movie
 router.route('/movie/:id')
