@@ -149,9 +149,14 @@ router.route('/movie/:movieid')
             }
             else {
                 if (needReview == "true"){
+
+                    res.json({message: "ID .", mvid: req.params.movieid});
                         Movie.aggregate([
 
-                        {$match: {"_id": req.params.movieid}},
+                        {$match: {
+                            "_id": req.params.movieid
+                            }
+                        },
 
                         {$lookup: {
                                 from: 'reviews',
