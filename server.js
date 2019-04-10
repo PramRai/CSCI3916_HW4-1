@@ -154,20 +154,19 @@ router.route('/movie/:movieid')
                         {$match: {"_id": req.params.movieid}},
 
                         {$lookup: {
-                                from: "reviews",
-                                localField: "_id",
-                                foreignField: "movieid",
-                                as: "Reviews"
+                                from: 'reviews',
+                                localField: '_id',
+                                foreignField: 'movieid',
+                                as: 'reviews'
                             }
-                        }],function (err, brandNewVar) {
+                        }
+                        ], function (err, brandNewVar) {
                             if (err) {
                                 res.json({message: "Error .", error: err});
                             } else {
-                                console.log(brandNewVar);
                                 res.json({message: "Here you are.", movie_and_review: brandNewVar});
                             }
                     });
-
                 } else {
                     res.json(movie);
                 }
