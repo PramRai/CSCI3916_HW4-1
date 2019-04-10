@@ -152,7 +152,7 @@ router.route('/movie/:movieid')
 
                         Movie.aggregate([
 
-                        {"$match": {"_id": req.params.movieid }
+                        {$match: {"_id": id}
                         },
 
                         {$lookup: {
