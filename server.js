@@ -149,39 +149,39 @@ router.route('/movie/:movieid')
             }
             else {
                 if (needReview == "true"){
-                    //
-                    //     Movie.aggregate([
-                    //
-                    //     {$match: {
-                    //         "_id": req.params.movieid
-                    //         }
-                    //     },
-                    //
-                    //     {$lookup: {
-                    //             from: 'reviews',
-                    //             localField: '_id',
-                    //             foreignField: 'movieid',
-                    //             as: 'reviews'
-                    //         }
-                    //     }
-                    //     ], function (err, brandNewVar) {
-                    //         if (err) {
-                    //             res.json({message: "Error .", error: err});
-                    //         } else {
-                    //             res.json({message: "Here you are.", movie_and_review: brandNewVar});
-                    //         }
-                    // });
 
-                    Movie.aggregate()
-                        .match(req.params.movieid)
-                        .lookup({from: 'reviews', localField: '_id', foreignField: 'movieid', as : 'Reviews'})
-                        .exec(function(err, movieAndReview) {
-                            if (err) {
-                                return res.json({message: "Error .", error: err});
-                            } else {
-                                return res.json({message: "Here you are.", movie_and_review: movieAndReview});
+                        Movie.aggregate([
+
+                        {$match: {
+                            "_id": ObjectID(req.params.movieid)
                             }
-                        })
+                        },
+
+                        {$lookup: {
+                                from: 'reviews',
+                                localField: '_id',
+                                foreignField: 'movieid',
+                                as: 'reviews'
+                            }
+                        }
+                        ], function (err, brandNewVar) {
+                            if (err) {
+                                res.json({message: "Error .", error: err});
+                            } else {
+                                res.json({message: "Here you are.", movie_and_review: brandNewVar});
+                            }
+                    });
+
+                    // Movie.aggregate()
+                    //     .match(req.params.movieid)
+                    //     .lookup({from: 'reviews', localField: '_id', foreignField: 'movieid', as : 'Reviews'})
+                    //     .exec(function(err, movieAndReview) {
+                    //         if (err) {
+                    //             return res.json({message: "Error .", error: err});
+                    //         } else {
+                    //             return res.json({message: "Here you are.", movie_and_review: movieAndReview});
+                    //         }
+                    //     })
                 } else {
                     res.json(movie);
                 }
