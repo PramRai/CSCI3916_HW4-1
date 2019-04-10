@@ -150,8 +150,8 @@ router.route('/movie/:movieid')
                 res.json({message: "Error 🚨 Movie not found.\n"});
             }
             else {
-                if (req.body.reviews == "true"){
-                    Movie.aggregate([
+                if (req.params.reviews === "true"){
+                        Movie.aggregate([
 
                         {$match: {'_id': id}},
 
