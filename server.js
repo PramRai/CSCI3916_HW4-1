@@ -177,9 +177,9 @@ router.route('/movie/:movieid')
                         .lookup({from: 'reviews', localField: '_id', foreignField: 'movieid', as : 'Reviews'})
                         .exec(function(err, movieAndReview) {
                             if (err) {
-                                res.json({message: "Error .", error: err});
+                                return res.json({message: "Error .", error: err});
                             } else {
-                                res.json({message: "Here you are.", movie_and_review: movieAndReview});
+                                return res.json({message: "Here you are.", movie_and_review: movieAndReview});
                             }
                         })
                 } else {
