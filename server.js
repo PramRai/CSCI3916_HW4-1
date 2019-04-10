@@ -150,25 +150,31 @@ router.route('/movie/:movieid')
             else {
                 if (needReview == "true"){
 
-                        Movie.aggregate([
-
-                        {$match: {"_id": id}
-                        },
-
-                        {$lookup: {
-                                from: 'reviews',
-                                localField: '_id',
-                                foreignField: 'movieid',
-                                as: 'reviews'
-                            }
-                        }
-                        ], function (err, brandNewVar) {
-                            if (err) {
-                                res.json({message: "Error .", error: err});
-                            } else {
-                                res.json({message: "Here you are.", movie_and_review: brandNewVar});
-                            }
+                    Review.find(id, function (err, rev){
+                        res.json({requestedMovie: movie, movieReviews: rev});
                     });
+
+
+                        // Movie.aggregate([
+                        //
+                        // {$match: {"_id": id}
+                        // },
+                        //
+                        // {$lookup: {
+                        //         from: 'reviews',
+                        //         localField: '_id',
+                        //         foreignField: 'movieid',
+                        //         as: 'reviews'
+                        //     }
+                        // }
+                        // ], function (err, brandNewVar) {
+                        //     if (err) {
+                        //         res.json({message: "Error .", error: err});
+                        //     } else {
+                        //         res.json({message: "Here you are.", movie_and_review: brandNewVar});}
+                        // });
+
+
                 } else {
                     res.json(movie);
                 }
