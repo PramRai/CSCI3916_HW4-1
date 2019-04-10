@@ -148,6 +148,8 @@ router.route('/movie/:movieid')
         Movie.findById(id, function (err, movie) {
             if (err) {
                 res.send(err);
+            } else if (!movie){
+                res.json("Movie not exist!");
             }
             else {
                 if (req.body.reviews == "true"){
