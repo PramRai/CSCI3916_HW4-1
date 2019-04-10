@@ -147,7 +147,7 @@ router.route('/movie/:movieid')
         var id = req.params.movieid;
         Movie.findById(id, function (err, movie) {
             if (err) {
-                res.send(err);
+                res.json({message: "Error 🚨 Movie not found.\n"});
             }
             else {
                 if (req.body.reviews == "true"){
@@ -243,7 +243,7 @@ router.route('/review')
         var id = req.body.movieid;
         Movie.findById(id, function (err, something){
             if (err) {
-                res.json({message: "Error 🚨"});
+                res.json({message: "Error Movie not exist.\n"});
             }
             if (something) {
                 var review = new Review();
@@ -254,7 +254,7 @@ router.route('/review')
 
                 review.save(function (err) {
                     if(err){
-                        res.json({message: "Review has not saved 🚨"});
+                        res.json({message: "Review has not saved "});
                     }
                     else{
                         res.json({message: "Review 🚀 saved to Mongo DB"});
