@@ -172,9 +172,9 @@ router.route('/movie/:id')
             if (err) {
                 res.json({message: "Read error \n", error: err});
             }
-            if (found) {
-                res.json({message: "Movie already exist"});
-            } else {
+           // if (found) {
+             //   res.json({message: "Movie already exist"});
+             else {
                 Movie.updateOne(conditions, req.body)
                     .then(mov => {
                         if (!mov) {
@@ -189,7 +189,6 @@ router.route('/movie/:id')
 
 router.route('/review')
     .post(authJwtController.isAuthenticated, function(req, res){
-
         let usertoken = req.headers.authorization;
         let token = usertoken.split(' ');
         let decoded = jwt.verify(token[1], process.env.SECRET_KEY);
