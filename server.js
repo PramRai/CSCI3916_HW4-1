@@ -9,10 +9,12 @@ var mongoose = require('mongoose');
 var app = express();
 var router = express.Router();
 var Movie = require('./Movie');
+var cors = require('cors');
 module.exports = app; // for testing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
+app.use(cors());
 
 router.route('/users/:userId')
     .get(authJwtController.isAuthenticated, function (req, res) {
