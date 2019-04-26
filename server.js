@@ -91,6 +91,8 @@ router.route('/movie')
         movie.yearReleased = req.body.yearReleased;
         movie.genre = req.body.genre;
         movie.actors = req.body.actors;
+        movie.ImageURI = req.body.ImageURI;
+        movie.averageRating = req.body.averageRating;
 
         //check if movies exist, maybe error or it has <3 errors.
         Movie.findOne({title: req.body.title}, function(err, found){
@@ -122,7 +124,6 @@ router.route('/movie')
             var needReview = req.query.reviews;
             if(err) res.json({message: "Ooops, something is wrong. Read error. \n", error: err});
             if (needReview == "true"){
-
                 Movie.aggregate([
                     {
                         $lookup:{
