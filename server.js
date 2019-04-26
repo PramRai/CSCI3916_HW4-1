@@ -119,6 +119,7 @@ router.route('/movie')
     //finds all movies
     .get(authJwtController.isAuthenticated, function (req, res) {
         Movie.find(function (err, movie) {
+            var needReview = req.query.reviews;
             if(err) res.json({message: "Ooops, something is wrong. Read error. \n", error: err});
             if (needReview == "true"){
 
