@@ -129,7 +129,7 @@ router.route('/movie')
                             from: 'reviews',
                             localField: '_id',
                             foreignField: 'movieid',
-                            as: 'Review'
+                            as: 'Reviews'
                         }
                     }],function(err, data) {
                     if(err){
