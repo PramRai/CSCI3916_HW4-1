@@ -121,13 +121,14 @@ router.route('/movie')
         Movie.find(function (err, movie) {
             if(err) res.json({message: "Ooops, something is wrong. Read error. \n", error: err});
             if (needReview == "true"){
+
                 Movie.aggregate([
                     {
                         $lookup:{
                             from: 'reviews',
                             localField: '_id',
                             foreignField: 'movieid',
-                            as: 'Reviews'
+                            as: 'Review'
                         }
                     }],function(err, data) {
                     if(err){
