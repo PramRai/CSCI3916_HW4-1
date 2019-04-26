@@ -126,10 +126,10 @@ router.route('/movie')
                 Movie.aggregate([
                     {
                         $lookup:{
-                            from: 'reviews',
+                            from: 'review',
                             localField: '_id',
                             foreignField: 'movieid',
-                            as: 'Reviews'
+                            as: 'Review'
                         }
                     }],function(err, data) {
                     if(err){
