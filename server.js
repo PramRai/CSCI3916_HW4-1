@@ -126,10 +126,10 @@ router.route('/movie')
                 Movie.aggregate([
                     {
                         $lookup:{
-                            from: 'reviews',
+                            from: 'review',
                             localField: '_id',
-                            foreignField: 'movieid',
-                            as: 'Reviews'
+                            foreignField: 'movie_id',
+                            as: 'Review'
                         }
                     }],function(err, data) {
                     if(err){
@@ -161,9 +161,9 @@ router.route('/movie')
     });
 
 //find movie by id
-router.route('/movie/:movieid')
+router.route('/movie/:movie_id')
     .get(authJwtController.isAuthenticated, function (req, res) {
-        var id = req.params.movieid;
+        var id = req.params.movie_id;
         var needReview = req.query.reviews;
         Movie.findById(id, function (err, movie) {
             if (err) {
@@ -172,7 +172,7 @@ router.route('/movie/:movieid')
             else {
                 if (needReview == "true"){
 
-                    Review.find({movieid : id}, function (err, rev){
+                    Review.find({movie_id : id}, function (err, rev){
                         if (err) {
                             res.json({message: "Error .", error: err});
                         } else {
@@ -214,7 +214,7 @@ router.route('/review')
         let usertoken = req.headers.authorization;
         let token = usertoken.split(' ');
         let decoded = jwt.verify(token[1], process.env.SECRET_KEY);
-        let id = req.body.movieid;
+        let id = req.body.movie_id;
         Movie.findById(id, function (err, something){
             if (err) {
                 res.json({message: "Error Movie not exist."});
@@ -224,7 +224,7 @@ router.route('/review')
                 review.name = decoded.username;
                 review.review = req.body.review;
                 review.rating = req.body.rating;
-                review.movieid = req.body.movieid;
+                review.movie_id = req.body.movie_id;
 
                 review.save(function (err) {
                     if(err){

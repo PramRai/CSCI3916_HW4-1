@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9ee19f9-cc16-478b-9ef6-92d5d45bbb3c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Movie.js" beforeDir="false" afterPath="$PROJECT_DIR$/Movie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Review.js" beforeDir="false" afterPath="$PROJECT_DIR$/Review.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="120" column="23" selection-start-line="120" selection-start-column="23" selection-end-line="120" selection-end-column="23" />
+            <state relative-caret-position="330">
+              <caret line="131" column="39" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -66,15 +65,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Review.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Users.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
@@ -105,9 +95,11 @@
       <find>,</find>
       <find>req</find>
       <find>token</find>
-      <find>movie</find>
-      <find>movieid</find>
       <find>findById</find>
+      <find>movie_id</find>
+      <find>movieid</find>
+      <find>review</find>
+      <find>movie</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -125,10 +117,10 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/Movies.js" />
         <option value="$PROJECT_DIR$/db.js" />
-        <option value="$PROJECT_DIR$/Review.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Movie.js" />
+        <option value="$PROJECT_DIR$/Review.js" />
         <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
@@ -228,12 +220,12 @@
       <workItem from="1553047211228" duration="2503000" />
       <workItem from="1554678339724" duration="8175000" />
       <workItem from="1556166947808" duration="121000" />
-      <workItem from="1556247987820" duration="1358000" />
+      <workItem from="1556247987820" duration="1881000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87179000" />
+    <option name="totallyTimeSpent" value="87702000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -387,6 +379,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Review.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Movie.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -394,17 +393,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Review.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="120" column="23" selection-start-line="120" selection-start-column="23" selection-end-line="120" selection-end-column="23" />
+        <state relative-caret-position="330">
+          <caret line="131" column="39" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
         </state>
       </provider>
     </entry>
