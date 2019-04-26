@@ -228,15 +228,14 @@ router.route('/review')
                 review.movieid = req.body.movieid;
 
                 review.save(function (err) {
-                    if(err){
+                    if (err) {
                         res.json({message: "Review has not saved because you missing required fields!"});
-                    }
-                    else{
+                    } else {
 
                         Review.find({movieid: req.body.movieid}, function (err, allReviews) {
-                            if(err){
+                            if (err) {
                                 res.status(400).json({message: "It's broken!"});
-                            }else{
+                            } else {
                                 var avg = 0;
 
                                 allReviews.forEach(function (review) {
@@ -247,18 +246,20 @@ router.route('/review')
 
 
                                 Movie.update(
-                                    { _id: req.body.movieid},
-                                    { $set: { averageRating: avg} }, function (err, doc){
-                                        if (err){
+                                    {_id: req.body.movieid},
+                                    {$set: {averageRating: avg}}, function (err, doc) {
+                                        if (err) {
                                             res.json({error: err});
-                                        }else if(doc != null){
+                                        } else if (doc != null) {
                                             res.json({message: "Review 🚀 saved to Mongo DB"});
                                         }
                                     });
 
                             }
+                        })
+                    }
                 })
-            } else {
+            }else {
                 res.json({failure: "Movie not found."});
             }
         })
