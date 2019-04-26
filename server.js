@@ -118,9 +118,29 @@ router.route('/movie')
 
     //finds all movies
     .get(authJwtController.isAuthenticated, function (req, res) {
-        Movie.find(function (err, movie) {
+        Movie.find({}, function (err, movie) {
             if(err) res.json({message: "Ooops, something is wrong. Read error. \n", error: err});
-            res.json(movie);
+            //res.json(movie);
+            else if (needReview == "true"){
+
+                Movie.aggregate([
+                    {
+                        $lookup:{
+                            from: 'reviews',
+                            localField: '_id',
+                            foreignField: 'movieid',
+                            as: 'Reviews'
+                        }
+                    }],function(err, data) {
+                    if(err){
+                        res.send(err);
+                    }else{
+                        res.json(data);
+                    }
+                });
+            } else {
+                res.json(movie);
+            }
         })
     })
 
