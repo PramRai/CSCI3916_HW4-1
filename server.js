@@ -232,21 +232,21 @@ router.route('/review')
                         res.json({message: "Review has not saved because you missing required fields!"});
                     } else {
 
-                        Review.find({movieid: req.body.movieid}, function (err, allReviews) {
+                        Review.find({id}, function (err, allReviews) {
                             if (err) {
                                 res.status(400).json({message: "It's broken!"});
                             } else {
                                 var avg = 0;
 
                                 allReviews.forEach(function (review) {
-                                    avg += review.Rating;
+                                    avg += review.rating;
                                     console.log(review);
                                 });
                                 avg = avg / allReviews.length;
 
 
                                 Movie.update(
-                                    {_id: req.body.movieid},
+                                    {_id: id},
                                     {$set: {averageRating: avg}}, function (err, doc) {
                                         if (err) {
                                             res.json({error: err});
