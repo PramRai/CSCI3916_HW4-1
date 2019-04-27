@@ -236,7 +236,7 @@ router.route('/review')
                             if (err) {
                                 res.status(400).json({message: "It's broken!"});
                             } else {
-                                var avg = 0;
+                                let avg = 0;
 
                                 allReviews.forEach(function (review) {
                                     avg += review.rating;
