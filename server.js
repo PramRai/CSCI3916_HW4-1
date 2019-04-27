@@ -178,11 +178,25 @@ router.route('/movie/:movieid')
             else {
                 if (needReview == "true"){
 
-                    Review.find({movieid : id}, function (err, rev){
-                        if (err) {
-                            res.json({message: "Error .", error: err});
-                        } else {
-                            res.json({requestedMovie: movie, movieReviews: rev});
+                    Movie.aggregate([
+                        {
+                            $match: {'_id': mongoose.Types.ObjectId(req.query.movieid)}
+                        },
+
+                        {
+                            $lookup:{
+                                from: 'reviews',
+                                localField: '_id',
+                                foreignField: 'movieid',
+                                as: 'Reviews'
+                            }
+                        }
+                    ],function(err, data) {
+
+                        if(err){
+                            res.send(err);
+                        }else{
+                            res.json(data);
                         }
                     });
                 } else {
