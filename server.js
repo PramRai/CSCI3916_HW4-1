@@ -132,7 +132,12 @@ router.route('/movie')
                             foreignField: 'movieid',
                             as: 'Reviews'
                         }
-                    }],function(err, data) {
+                    },
+                    {
+                        $sort : { averageRating : -1} }
+
+                    ],function(err, data) {
+
                     if(err){
                         res.send(err);
                     }else{
